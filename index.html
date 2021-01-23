@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="UTF-8"></script>
+	</head>
+	<body>
+		<div id="example">
+			<p>Original message:"{{message}}"</p>
+			<p>Computed reversed message:"{{reversedMessage}}"</p>
+		</div>
+		<ol id="app-7">
+			<!-- 创建一个todo-item组件的实例-->
+			<todo-item
+				v-for="item in groceryList"
+				v-bind:todo="item"
+				v-bind:man="item"
+				v-bind:key="item.id"
+			></todo-item>
+		</ol>
+		<div id="app-6">
+			<p>{{message}}</p>
+			<input v-model="message" type="" name="" id="" value="" />
+		</div>
+		<div id="app-5">
+			<p>{{message}}</p>
+			<button v-on:click="reverseMessage" type="button">反转消息</button>
+		</div>
+		<div id="app-4">
+			<ol>
+				<li v-for="todo in todos">
+					{{todo.text}}
+				</li>
+			</ol>
+		</div>
+		<div id="app-3">
+			<p v-if="seen">现在看到我了</p>
+		</div>
+		<div id="app-2">
+			<span v-bind:title="message" >
+				鼠标悬停几秒查看此处动态绑定的提示信息！{{message}}
+			</span>
+		</div>
+		<script type="text/javascript" charset="utf-8">
+			var vm = new Vue({
+				el:'#example',
+				data:{
+					message:'Hello'
+				},
+				//相当于共有函数-通过函数名直接调用
+				computed:{
+					//计算属性的getter
+					reversedMessage:function(){
+						return this.message.split('').reverse().join('')
+					}
+				}
+			})
+			Vue.component('todo-item',{
+				//todo-item组件现在接受一个“prop”类似于一个自定义attribute
+				//这个prop名为todo
+				props:['todo','man'],
+				template:'<li>{{todo.text}}{{man.name}}</li>'
+			})
+			var app7 = new Vue({
+			  el: '#app-7',
+			  data: {
+			    groceryList: [
+			      { id: 0, text: '蔬菜' ,name:'wangyao'},
+			      { id: 1, text: '奶酪' ,name:'liuzhaoyang'},
+			      { id: 2, text: '随便其它什么人吃的东西' ,name:'liuyixin'}
+			    ]
+			  }
+			})
+			var app6 = new Vue({
+				el:'#app-6',
+				data:{
+					message:'Hello Vue!'
+				}
+			})
+			var app5 = new Vue({
+				el:'#app-5',
+				data:{
+					message:'hello Vue.js',
+				},
+				methods:{
+					reverseMessage:function(){
+						this.message = this.message.split('').reverse().join('')
+					}
+				}
+			})
+			var app4 = new Vue({
+				el:'#app-4',
+				data:{
+					todos:[
+						{text:"学习 Javascript",
+						len:'a'},
+						{text:"学习 Vue",
+						len:'b'},
+						{text:"整个项目",
+						len:'c'},
+					]
+				}
+			})
+			var app3 = new Vue({
+				el:'#app-3',
+				data:{
+					seen:true
+				}
+			})
+			var app2 = new Vue({
+				el:'#app-2',
+				data:{
+					message:'页面加载于'+new Date().toLocaleDateString()
+				}
+			})
+		</script>
+	</body>
+</html>
