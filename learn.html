@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.aclass{
+				font-size: 30px;
+			}
+			.bclass{
+				color: red;
+			}
+			.cclass{
+				font-size: 60px;
+				color: blue;
+			}
+			.red{
+				color: red;
+			}
+			.blue{
+				color: blue;
+			}
+		</style>
+		<script src="vue.js" type="text/javascript" charset="UTF-8">
+			
+		</script>
+		<script type="text/javascript" charset="utf-8">
+			
+		</script>
+	</head>
+	<body>
+		<div id="democs">
+			<p v-if="!key">成功了</p>
+			<p v-else>失败</p>
+			<p v-show="!key">我</p>
+			<p v-show="key">你</p>
+			<button @click="Change" >Change</button>
+		</div>
+		<script type="text/javascript">
+			new Vue({
+				el:'#democs',
+				data:{
+					key:true
+				},
+				methods:{
+					Change:function(){
+						this.key = !this.key
+					}
+				}
+			})
+		</script>
+		<div id="sty">
+			<p class="aclass" v-bind:class="b">这是一个P标签</p>
+			<button type="button" @click="changeB">change</button>
+			<p :class="{red:key,blue:!key}">hi Vue</p>
+			<p :class="[key?'blue':'red']">hi wangyao</p>
+		</div>
+		<script type="text/javascript" charset="UTF-8">
+			var vms = new Vue({
+				el:'#sty',
+				data:{
+					b:'bclass',
+					key:true,
+				},
+				methods:{
+					changeB:function(){
+						if(this.key)
+							this.b = 'cclass'
+						else this.b = 'bclass'
+						this.key = !this.key
+					}
+				}
+			})
+		</script>
+		<div id="demo">
+			姓：<input type="text"  placeholder="First Name" v-model="firstName"/><br>
+			名：<input type="text"  placeholder="Last Name" v-model="lastName"/><br>
+			姓名1（单向）：<input type="text"  placeholder="Full Name1" v-model="fullName1"/><br>
+			姓名2（单向）：<input type="text"  placeholder="Full Name2" v-model="fullName2"/><br>
+			姓名3（双向）：<input type="text"  placeholder="Full Name3" v-model="fullName3"/>
+		</div>
+		<script  type="text/javascript" charset="utf-8">
+			const vm = new Vue({
+				el:'#demo',
+				data:{
+					firstName:'A',
+					lastName:'B',
+					// fullName1:''
+					fullName2:'A B',
+				},
+				computed:{
+					fullName1:function(){
+						return this.firstName + ' ' + this.lastName
+					},
+					//双向绑定
+					fullName3:{
+						get:function(){
+							return this.firstName + ' ' + this.lastName
+						},
+						set:function(val){
+							var names = val.split(' ');
+							this.firstName = names[0]
+							this.lastName = names[1]
+						}
+					}
+				},
+				watch:{
+					firstName:function(value){
+						console.log(this)
+						this.fullName2 = value + ' ' + this.lastName
+					}
+				},
+			})
+			vm.$watch('lastName',function(val){
+				this.fullName2 = this.firstName + ' ' + val
+			}) 
+		</script>
+	</body>
+</html>

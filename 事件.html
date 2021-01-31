@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>事件处理</title>
+		<script src="vue.js" type="text/javascript">
+			
+		</script>
+	</head>
+	
+	<body>
+		<div id="demo">
+			<h2>1.绑定监听</h2>
+			<button v-on:click="test1" type="button">test1</button>
+			<button v-on:click="test2('msgsss')" type="button">test2</button>
+			<button v-on:click="test3" type="button">test3</button>
+			<h2>2.事件修饰符</h2>
+			<div style="width: 200px;height: 200px;background-color: #FF0000;" @click="test4">
+				<div style="width: 100px;height: 100px;background-color: skyblue" @click.stop="test5">inner</div>
+				out
+			</div>
+			<a href="https://www.baidu.com" @click.prevent="test6">去百度</a>
+			<h2>3.按键修饰符</h2>
+			<input type="text" name="" id="" value=""  @keyup.enter="test8"/>
+			
+		</div>
+		<script type="text/javascript" charset="utf-8">
+			new Vue({
+				el:'#demo',
+				data:{
+					test8(event){
+						alert(event.target.value)
+					},
+					test6(){
+						alert('不要去百度！')
+					},
+					test4(){
+						alert("out")
+					},
+					test5(){
+						alert('inner')
+					},
+					test1(){
+						alert("这是test1！")
+					},
+					test2(msg){
+						alert('这是'+msg)
+					},
+					test3(event){
+						alert(event.target.innerHTML)
+					}
+					
+				}
+			})
+		</script>
+	</body>
+</html>

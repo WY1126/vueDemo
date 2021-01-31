@@ -6,9 +6,48 @@
 		<script src="vue.js" type="text/javascript" charset="UTF-8"></script>
 	</head>
 	<body>
+		<div id="demo">
+			{{fullName}}.{{firstName}}.{{lastName}}
+		</div>
+		<script type="text/javascript">
+			var vm= new Vue({
+				el:'#demo',
+				data:{
+					firstName:'Foo',
+					lastName:'Bar',
+					// fullName:'Foo Bar'
+				},
+				computed: {
+				  fullName: {
+					// getter
+					get: function () {
+					  return this.firstName + ' ' + this.lastName
+					},
+					// setter
+					set: function (newValue) {
+						console.log(newValue)
+					  var names = newValue.split(' ')
+					  this.firstName = names[0]
+					  this.lastName = names[names.length - 1]
+					}
+				  }
+				}
+				// watch:{
+				// 	firstname:function(val){
+				// 		this.fullname = val + ' ' + this.lastname
+				// 	},
+				// 	lastname:function( val){
+				// 		this.fullname = this.firstname  + ' ' + val
+				// 	}
+				// }
+			})
+		</script>
 		<div id="example">
 			<p>Original message:"{{message}}"</p>
 			<p>Computed reversed message:"{{reversedMessage}}"</p>
+			<p>now:"{{now}}"</p>
+			<!-- <img v-bing:src="imgUrl" /> -->
+			<!-- <img v-bind:src="imgUrl" > -->
 		</div>
 		<ol id="app-7">
 			<!-- 创建一个todo-item组件的实例-->
@@ -39,21 +78,27 @@
 		</div>
 		<div id="app-2">
 			<span v-bind:title="message" >
-				鼠标悬停几秒查看此处动态绑定的提示信息！{{message}}
+				鼠标xxxxxxxxxfdfdfdfdfdf悬停几秒查看此处动态绑定的提示信息！{{message}}
 			</span>
 		</div>
+		
+		
 		<script type="text/javascript" charset="utf-8">
 		// 计算属性VS 监听属性
 			var vm = new Vue({
 				el:'#example',
 				data:{
-					message:'Hello'
+					message:'Hello',
+					imgUrl:'https://acimages-1302835316.cos.ap-shanghai.myqcloud.com/upload/20210124/1611449363759tmp_f05c30b19a3009298abd9315c86974056b20435328de1d41.jpg',
 				},
 				//相当于共有函数-通过函数名直接调用
 				computed:{
 					//计算属性的getter
 					reversedMessage:function(){
 						return this.message.split('').reverse().join('')
+					},
+					now:function(){
+						return Date.now()
 					}
 				}
 			})
