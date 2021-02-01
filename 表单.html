@@ -9,15 +9,15 @@
 		<div id="demo" style="background-color: beige;">
 			<form @submit.prevent="handleSubmit" >
 				<span id="">用户名：</span>
-				<input type="text" name="" id="" value="" /><br><br>
+				<input type="text" name="" id="" value="" v-model="user.username"/><br><br>
 				<span>密 	码：</span>
-				<input type="password" name="" id="" value="" /><br><br>
+				<input type="password" name="" id="" value=""  v-model="user.pwd"/><br><br>
 				
 				<span>性别：
 				</span>
-				<input type="radio" name="sex"  id="female" value="女" v-model="sex"/>
+				<input type="radio" name="sex"  id="female" value="女" v-model="user.sex"/>
 				<label for="female">女</label>
-				<input type="radio" name="sex"  id="male" value="男" v-model="sex"/>
+				<input type="radio" name="sex"  id="male" value="男" v-model="user.sex"/>
 				<label for="male">男</label>
 				<input type="radio" name="sex"  id="x" value="x"/><label for="x">xx</label><br><br>
 				
@@ -47,7 +47,6 @@
 			var vm = new Vue({
 				el:'#demo',
 				data:{
-					sex:'女',
 					user:{
 						username:'',
 						pwd:'',
