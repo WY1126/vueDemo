@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>表单</title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="demo" style="background-color: beige;">
+			<form @submit.prevent="handleSubmit" >
+				<span id="">用户名：</span>
+				<input type="text" name="" id="" value="" /><br><br>
+				<span>密 	码：</span>
+				<input type="password" name="" id="" value="" /><br><br>
+				
+				<span>性别：
+				</span>
+				<input type="radio" name="sex"  id="female" value="女" v-model="sex"/>
+				<label for="female">女</label>
+				<input type="radio" name="sex"  id="male" value="男" v-model="sex"/>
+				<label for="male">男</label>
+				<input type="radio" name="sex"  id="x" value="x"/><label for="x">xx</label><br><br>
+				
+				<span id="">
+					爱好：
+				</span>
+				<input type="checkbox" name="ball" id="basket" value="basketball" />
+				<label for="basket">篮球🏀</label>
+				<input type="checkbox" name="ball" id="foot" value="football" />
+				<label for="foot">足球⚽</label>
+				<input type="checkbox" name="ball" id="pingpang" value="pingpang"/><label for="pingpang">乒乓球🏓</label>
+				<br><br>
+				<span>城市：</span>
+				<select name="">
+					<option value="">未选择</option>
+					<option ></option>
+				</select><br><br>
+				<span>介绍：</span>
+				<textarea rows="10" cols="20">
+					
+				</textarea><br><br>
+				<input type="submit" value="注册"/>
+				
+			</form>
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el:'#demo',
+				data:{
+					sex:'女',
+					user:{
+						username:'',
+						pwd:'',
+						sex:'女',
+						likes:[],
+						cityId:'',
+						desc:'',
+					},
+				},
+			})
+		</script>
+	</body>
+</html>
