@@ -18,25 +18,24 @@
 				<input type="radio" name="sex"  id="female" value="女" v-model="user.sex"/>
 				<label for="female">女</label>
 				<input type="radio" name="sex"  id="male" value="男" v-model="user.sex"/>
-				<label for="male">男</label>
-				<input type="radio" name="sex"  id="x" value="x"/><label for="x">xx</label><br><br>
+				<label for="male">男</label><br><br>
 				
 				<span id="">
 					爱好：
 				</span>
-				<input type="checkbox" name="ball" id="basket" value="basketball" />
+				<input type="checkbox" name="ball" id="basket" value="basketball" v-model="user.likes"/>
 				<label for="basket">篮球🏀</label>
-				<input type="checkbox" name="ball" id="foot" value="football" />
+				<input type="checkbox" name="ball" id="foot" value="football" v-model="user.likes" />
 				<label for="foot">足球⚽</label>
-				<input type="checkbox" name="ball" id="pingpang" value="pingpang"/><label for="pingpang">乒乓球🏓</label>
+				<input type="checkbox" name="ball" id="pingpang" value="pingpang" v-model="user.likes"/><label for="pingpang">乒乓球🏓</label>
 				<br><br>
 				<span>城市：</span>
-				<select name="">
+				<select name="" v-model="user.cityId">
 					<option value="">未选择</option>
-					<option ></option>
+					<option v-for="(city,index) in citys" :key="index" :value="city.id">{{city.name}}</option>
 				</select><br><br>
 				<span>介绍：</span>
-				<textarea rows="10" cols="20">
+				<textarea rows="10" cols="20" v-model="user.desc">
 					
 				</textarea><br><br>
 				<input type="submit" value="注册"/>
@@ -55,7 +54,13 @@
 						cityId:'',
 						desc:'',
 					},
+					citys:[{id:1,name:'北京'},{id:2,name:'上海'},{id:3,name:'南昌'},{id:4,name:'广州'},{id:5,name:'深圳'}]
 				},
+				methods:{
+					handleSubmit(){
+						alert(JSON.stringify(this.user) )
+					}
+				}
 			})
 		</script>
 	</body>
